@@ -1,0 +1,24 @@
+html<!DOCTYPE html>
+<html>
+<head>
+    <title>Birthday Party Randomizer</title>
+    <script>
+        // Paste your exact Dropbox raw links inside the brackets below, separated by commas
+        const playlist = [
+            "https://dropbox.com",
+            "https://dropbox.com",
+            "https://dropbox.com"
+        ];
+
+        window.onload = function() {
+            // Pick a completely random index from the list
+            const randomTrack = playlist[Math.floor(Math.random() * playlist.length)];
+            // Instantly redirect the browser to play that track
+            window.location.href = randomTrack;
+        };
+    </script>
+</head>
+<body>
+    <p>Loading your party track...</p>
+</body>
+</html>
