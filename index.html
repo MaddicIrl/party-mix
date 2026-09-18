@@ -18,7 +18,7 @@
             text-align: center;
         }
         #playButton {
-            background-color: #1DB954; /* Clean green button */
+            background-color: #1DB954;
             color: white;
             border: none;
             padding: 20px 40px;
@@ -42,28 +42,37 @@
 <body>
 
     <button id="playButton">🎵 Tap to Play Random Track</button>
-    <div id="status">Loading track layout...</div>
+    <div id="status">Loading track...</div>
 
-    <!-- Hidden audio element -->
     <audio id="audioPlayer" controls style="display:none;"></audio>
 
     <script>
-        // Paste your working Dropbox links here
+        // Make sure your filenames exactly match your uploaded files (case-sensitive!)
         const playlist = [
-Audio/ashley.mp4, audio/milk.mp3, audio/butter.mp3, audio/bolted down.mp3, audio/naughty.mp3, audio/culture.mp3, audio/he is nothing but.mp3, audio/Like a light.mp3,audio/rodney.mp3, audio/Poor Kerryman.mp3, audio/will we do.mp3];
+            Audio/ashley.mp4, 
+            audio/milk.mp3, 
+            audio/butter.mp3, 
+            audio/bolted down.mp3, 
+            audio/naughty.mp3, 
+            audio/culture.mp3,
+            audio/he is nothing but.mp3, 
+            audio/Like a light.mp3,
+            audio/rodney.mp3,
+            audio/Poor Kerryman.mp3,
+            audio/will we do.mp3
+        ];
 
         const playButton = document.getElementById('playButton');
         const statusDiv = document.getElementById('status');
         const player = document.getElementById('audioPlayer');
 
-        // Select a random track immediately on page load
+        // Pick a random track safely
         const randomTrack = playlist[Math.floor(Math.random() * playlist.length)];
         player.src = randomTrack;
-        statusDiv.innerText = "Track selected. Ready to play!";
+        statusDiv.innerText = "Track ready to stream.";
 
-        // Wait for user interaction to bypass browser block
         playButton.addEventListener('click', () => {
-            statusDiv.innerText = "Streaming audio...";
+            statusDiv.innerText = "Playing audio...";
             
             player.play()
                 .then(() => {
@@ -73,9 +82,9 @@ Audio/ashley.mp4, audio/milk.mp3, audio/butter.mp3, audio/bolted down.mp3, audio
                 })
                 .catch(error => {
                     console.error("Playback failed:", error);
-                    statusDiv.innerText = "Error: Check your link formatting or network connection.";
+                    statusDiv.innerText = "Playback blocked. Check your audio files.";
                 });
-        }, { once: true }); // 'once: true' ensures the event listener fires cleanly
+        }, { once: true });
     </script>
 </body>
 </html>
